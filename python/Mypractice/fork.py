@@ -1,7 +1,7 @@
 import  os
 
 
-print('process (%s) start ...' % os.getid())
+print('process (%s) start ...' % os.getpid())
 
 pid = os.fork()
 if pid == 0:
