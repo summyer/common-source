@@ -2,23 +2,23 @@ from multiprocessing import Process
 import os
 
 
-##def run_proc(name):
-##    print('Run child process $s (%s)...' % (name ,os.getpid()))
-##
-##if __name__ == '__main__':
-##    print('Parent process %s .' % os.getpid())
-##    p=Process(target=run_proc,args=('test',))
-##    print('Child process will start.')
-##    p.start()
-##    p.join()
-##    print('Child process end.')
+def run_proc(name):
+    print('Run child process $s (%s)...' % (name ,os.getpid()))
+
+if __name__ == '__main__':
+    print('Parent process %s .' % os.getpid())
+    p=Process(target=run_proc,args=('test',))
+    print('Child process will start.')
+    p.start()
+    p.join()
+    print('Child process end.')
 
 
 from multiprocessing import Pool
 import time
 import random
 
-
+#linux上有效果，windows上此方法好像不执行
 def long_time_task(name):
     print('Run task %s (%s)...' % (name,os.getpid()))
     start=time.time()
@@ -37,3 +37,6 @@ if __name__=='__main__':
     p.close()
     p.join()
     print('All subprocesses done.')
+
+
+
