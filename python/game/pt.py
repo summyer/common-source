@@ -17,9 +17,15 @@ pygame.init()
 screen = pygame.display.set_mode(SCREEN_SIZE, RESIZABLE, 32)
  
 background = pygame.image.load(background_image_filename).convert()
- 
+
+font = pygame.font.SysFont("arial", 64)
+#这句话总是可以的，所以还是TTF文件保险啊
+text_surface = font.render(u"hello", True, (0, 0, 255))
+x1 = 0
+y1 = (480 - text_surface.get_height())/2
+
 while True:
- 
+    print('x --',x1)
     event = pygame.event.wait()
     if event.type == QUIT:
         pygame.quit()
@@ -31,7 +37,14 @@ while True:
  
     screen_width, screen_height = SCREEN_SIZE
     # 这里需要重新填满窗口
-    screen.blit(background, (x, y))
-            
+    for y in range(0, screen_height, background.get_height()):
+        for x in range(0, screen_width, background.get_width()):
+            screen.blit(background, (x, y))
+
+    if x1 < 480:
+        #print(x)
+        x1 = 2+x1
+        #print(x)
  
+    screen.blit(text_surface, (x1, y1))
     pygame.display.update()
